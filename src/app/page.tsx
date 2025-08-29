@@ -35,6 +35,13 @@ const FeatureShowcase = () => {
   const isScrolling = useRef(false);
   const currentContent = data.find((item) => item.id === currentId);
 
+  const getHeightMultiplier = () => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth <= 768 ? 45 : 25;
+    }
+    return 25;
+  };
+
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (!sectionRef.current) return;
@@ -54,7 +61,6 @@ const FeatureShowcase = () => {
           return;
         }
 
-        // Handle scrolling down from last feature - allow normal scroll
         if (e.deltaY > 0 && currentId === rightSection.length - 1) {
           isScrolling.current = false;
           window.scrollBy(0, 50);
@@ -92,10 +98,11 @@ const FeatureShowcase = () => {
     <section
       ref={sectionRef}
       className="min-h-screen sticky top-0"
-      style={{ height: `${rightSection.length * 25}vh` }}
+      style={{ height: `${rightSection.length * getHeightMultiplier()}vh` }}
     >
       <div className="min-h-screen overflow-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-center w-full p-10 gap-8 h-screen">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full p-20 gap-8 ">
+          {/* Rest of your component remains the same */}
           {currentContent && (
             <>
               <div id="left" className="flex-1 max-w-md ">
@@ -191,7 +198,7 @@ const FeatureShowcase = () => {
 
 // Footer section component
 const FooterSection = () => (
-  <section className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+  <section className="min-h-screen bg-gray-900 text-white flex items-center justify-center ">
     <div className="text-center px-4">
       <h2 className="text-4xl md:text-6xl font-bold mb-6">Ready to Start?</h2>
       <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -209,6 +216,7 @@ export default function Home() {
     <div className="overflow-x-hidden">
       <HeroSection />
       <FeatureShowcase />
+
       <FooterSection />
     </div>
   );
