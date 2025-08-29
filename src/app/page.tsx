@@ -102,7 +102,7 @@ const FeatureShowcase = () => {
     >
       <div className="min-h-screen overflow-hidden">
         <div className="flex flex-col md:flex-row justify-between items-center w-full p-20 gap-8 ">
-          {/* Rest of your component remains the same */}
+        
           {currentContent && (
             <>
               <div id="left" className="flex-1 max-w-md ">
