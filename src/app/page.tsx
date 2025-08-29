@@ -37,7 +37,7 @@ const FeatureShowcase = () => {
 
   const getHeightMultiplier = () => {
     if (typeof window !== "undefined") {
-      return window.innerWidth <= 768 ? 45 : 25;
+      return window.innerWidth <= 768 ? 60 : 25;
     }
     return 25;
   };
@@ -102,7 +102,6 @@ const FeatureShowcase = () => {
     >
       <div className="min-h-screen overflow-hidden">
         <div className="flex flex-col md:flex-row justify-between items-center w-full p-20 gap-8 ">
-        
           {currentContent && (
             <>
               <div id="left" className="flex-1 max-w-md ">
